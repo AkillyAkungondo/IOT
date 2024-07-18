@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Controle Remoto de Iluminação</title>
+</head>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyA7zFiIWZD0eXKvFHxNnx6JSN8vPHhhKEM",
+    authDomain: "iot1-90a7f.firebaseapp.com",
+    projectId: "iot1-90a7f",
+    storageBucket: "iot1-90a7f.appspot.com",
+    messagingSenderId: "885629663529",
+    appId: "1:885629663529:web:7f6ddb2e515d6d567b1f38",
+    measurementId: "G-TSDV55T10F"   };
+    firebase.initializeApp(firebaseConfig);
+
+firebase.database().ref("SALA/estado").on("value", snapshot => {
+  document.querySelector("#estado-led").textContent = snapshot.val();
+});
+
+    function ledOn() {
+      firebase.database().ref("SALA").set({
+        estado: "LIGADA"
+      });
+    }
+
+    function ledOff() {
+      firebase.database().ref("SALA").set({
+        estado: "DESLIGADA"
+      });
+    }
+  </script>
+  <script src="app.js" defer></script>
+<body>
+    <div class="body">
+        <div class="container">
+            <h1>Controle Remoto de Iluminação</h1>
+            <button class="btn btn-on" id="btn-on" onclick="ledOn()">Ligar</button> 
+            <button class="btn btn-off" id="btn-off" onclick="ledOff()">Desligar</button>
+            <p>Estado da LED: <span id="estado">Desligado</span></p> 
+        </div>
+    </div>
+   <script src="script.js"></script>
+</body>
+</html>
