@@ -40,6 +40,7 @@ firebase.database().ref("SALA/estado").on("value", snapshot => {
     <div class="body">
         <div class="container">
             <h1>Controle Remoto de Iluminação</h1>
+            <img id="led-image" src="./ledoff.png" alt="">
             <button class="btn btn-on" id="btn-on" onclick="ledOn()">Ligar</button> 
             <button class="btn btn-off" id="btn-off" onclick="ledOff()">Desligar</button>
             <p>Estado da LED: <span id="estado">Desligado</span></p> 
